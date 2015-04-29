@@ -1,0 +1,90 @@
+/**
+* Media query mixin for better breakpoint alignment, ported from Inuit CSS
+*
+* @section Framework
+* @author ljd
+*/
+$mq-desktop: 1200px !default;
+$mq-tablet-horizontal: 1024px !default;
+$mq-tablet-vertical: 768px !default;
+$mq-mobile-horizontal: 568px !default;
+$mq-mobile-vertical: 320px !default;
+
+@mixin media($point, $max-width: false) {
+	@if $point == print {
+		@media print {
+			@content;
+		}
+	}
+	@else if $point == retina {
+		@media (-webkit-min-device-pixel-ratio:1.5), (min-resolution:144dpi) {
+			@content;
+		}
+	}
+	@else {
+		@if ($max-width) {
+			@if $point == desktop {
+				@media screen and (max-width:$mq-desktop - 1px) {
+					@content;
+				}
+			}
+			@if $point == tabletH {
+				@media screen and (max-width:$mq-tablet-horizontal - 1px) {
+					@content;
+				}
+			}
+			@if $point == tabletV {
+				@media screen and (max-width:$mq-tablet-vertical - 1px) {
+					@content;
+				}
+			}
+			@else if $point == mobileH {
+				@media screen and (max-width:$mq-mobile-horizontal - 1px) {
+					@content;
+				}
+			}
+			@else if $point == mobileV {
+				@media screen and (max-width:$mq-mobile-vertical - 1px) {
+					@content;
+				}
+			}
+			@else {
+				@media screen and (max-width:$point) {
+					@content;
+				}
+			}
+		}
+		@else {
+			@if $point == desktop {
+				@media screen and (min-width:$mq-desktop) {
+					@content;
+				}
+			}
+			@if $point == tabletH {
+				@media screen and (min-width:$mq-tablet-horizontal) {
+					@content;
+				}
+			}
+			@if $point == tabletV {
+				@media screen and (min-width:$mq-tablet-vertical) {
+					@content;
+				}
+			}
+			@else if $point == mobileH {
+				@media screen and (min-width:$mq-mobile-horizontal) {
+					@content;
+				}
+			}
+			@else if $point == mobileV {
+				@media screen and (min-width:$mq-mobile-vertical) {
+					@content;
+				}
+			}
+			@else {
+				@media screen and (min-width:$point) {
+					@content;
+				}
+			}
+		}
+	}
+}

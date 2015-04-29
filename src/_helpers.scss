@@ -1,0 +1,187 @@
+/**
+* Various assorted helpers
+*
+* @section Framework
+* @author ljd
+*/
+
+
+
+/**
+* Silent classes
+**/
+
+// Hide text
+%hide-text {
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+// Create layout elements from pseudo elements with no content
+%pseudo-block {
+	@extend %hide-text;	
+	content: '';
+	display: block;
+}
+
+// List helper (because you do this all the time)
+%list-helper {
+	display: block;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+// Standard clearfix
+%clearfix {
+	display: block;
+	content: '';
+	clear: both;
+	height: 0;
+
+	font-size: 0;
+
+	visibility: hidden;
+}
+
+
+
+/**
+* Mixins
+**/
+
+// Polyfills for before/after elements (ie7 and ie8 if JS changes needed.)
+@mixin poly-before {
+	&:before {
+		content: '';
+		@content;
+	}
+	&>.before {
+		@content;
+	}
+}
+
+@mixin poly-after {
+	&:after {
+		content: '';
+		@content;
+	}
+	&>.after {
+		@content;
+	}
+}
+
+@mixin link-active {
+	&:focus,
+	&:active,
+	.no-touchevents &:hover {
+		@content;
+	}
+}
+
+// Mixin for scrolling shadows - http://codepen.io/laustdeleuran/pen/DBaAu
+@mixin scrolling-shadows($direction: Y, $background-color: rgb(255, 255, 255), $shadow-intensity: 0.2, $shadow-color: rgb(0,0,0), $cover-size: 40px, $shadow-size: 14px) {
+
+	@if $direction == X {
+		@include background-image(
+			// Shadow covers 
+			linear-gradient(to right, $background-color 30%, rgba($background-color, 0)),
+			linear-gradient(to right, rgba($background-color, 0), $background-color 70%),
+
+			// Shadows 
+			radial-gradient(farthest-side at 0 50%, rgba($shadow-color, $shadow-intensity), rgba($shadow-color, 0)),
+			radial-gradient(farthest-side at 100% 50%, rgba($shadow-color, $shadow-intensity), rgba($shadow-color, 0))
+		);
+		background-repeat: no-repeat;
+		background-color: $background-color;
+		background-size: $cover-size 100%, $cover-size 100%, $shadow-size 100%, $shadow-size 100%;
+		background-position: 0 0, 100% 0, 0 0, 100% 0;
+
+		// Opera doesn't support this in the shorthand 
+		background-attachment: local, local, scroll, scroll;
+	} @else {
+		@include background-image(
+			// Shadow covers 
+			linear-gradient(to bottom, $background-color 30%, rgba($background-color, 0)),
+			linear-gradient(to bottom, rgba($background-color, 0), $background-color 70%),
+
+			// Shadows 
+			radial-gradient(farthest-side at 50% 0, rgba($shadow-color, $shadow-intensity), rgba($shadow-color, 0)),
+			radial-gradient(farthest-side at 50% 100%, rgba($shadow-color, $shadow-intensity), rgba($shadow-color, 0))
+		);
+		background-repeat: no-repeat;
+		background-color: $background-color;
+		background-size: 100% $cover-size, 100% $cover-size, 100% $shadow-size, 100% $shadow-size;
+		background-position: 0 0, 0 100%, 0 0, 0 100%;
+
+		// Opera doesn't support this in the shorthand 
+		background-attachment: local, local, scroll, scroll;
+	}
+}
+
+// CSS Arrows mixin // https://gist.github.com/bpainter/1085320
+@mixin arrow($direction, $color, $size) {
+	display:block;
+	height: 0;
+	width: 0;
+	@if $direction == 'top' {
+		border-left: $size solid transparent;
+		border-right: $size solid transparent;
+		border-bottom: $size * 1.5 solid $color;
+	}
+	@else if $direction == 'right' {
+		border-top: $size solid transparent;
+		border-bottom: $size solid transparent;
+		border-left: $size * 1.5 solid $color;
+	}
+	@else if $direction == 'bottom' {
+		border-top: $size * 1.5 solid $color;
+		border-right: $size solid transparent;
+		border-left: $size solid transparent;
+	}
+	@else if $direction == 'left' {
+		border-top: $size solid transparent;
+		border-right: $size * 1.5 solid $color;
+		border-bottom: $size solid transparent;
+	}
+	@else if $direction == 'top-left' {
+		border-top: $size solid $color;
+		border-right: $size solid transparent;
+	}
+	@else if $direction == 'top-right' {
+		border-top: $size solid $color;
+		border-left: $size solid transparent;
+	}
+	@else if $direction == 'bottom-left' {
+		border-bottom: $size solid $color;
+		border-right: $size solid transparent;
+	}
+	@else if $direction == 'bottom-right' {
+		border-bottom: $size solid $color;
+		border-left: $size solid transparent;
+	}
+}
+
+// Experimental support mixin ported from Compass
+$experimental-support-for-mozilla: true !default;
+$experimental-support-for-webkit: true !default;
+$experimental-support-for-opera: true !default;
+$experimental-support-for-microsoft: true !default;
+$experimental-support-for-khtml: false !default;
+$experimental-support-for-svg: false !default;
+@mixin experimental($property, $value,
+  $moz      : $experimental-support-for-mozilla,
+  $webkit   : $experimental-support-for-webkit,
+  $o        : $experimental-support-for-opera,
+  $ms       : $experimental-support-for-microsoft,
+  $khtml    : $experimental-support-for-khtml,
+  $official : true
+) {
+  @if $webkit  and $experimental-support-for-webkit    { -webkit-#{$property} : $value; }
+  @if $khtml   and $experimental-support-for-khtml     {  -khtml-#{$property} : $value; }
+  @if $moz     and $experimental-support-for-mozilla   {    -moz-#{$property} : $value; }
+  @if $ms      and $experimental-support-for-microsoft {     -ms-#{$property} : $value; }
+  @if $o       and $experimental-support-for-opera     {      -o-#{$property} : $value; }
+  @if $official                                        {         #{$property} : $value; }
+}

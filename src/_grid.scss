@@ -1,0 +1,54 @@
+/**
+* Grid helpers
+*
+* Basic home-rolled grid created by @ljd.
+*
+* @section Framework
+* @author ljd
+*/
+$grid-gutter: 30px !default;
+$grid-columns: 8 !default;
+$grid-col-width: percentage(1/$grid-columns);
+
+// Generic helper for creating grid widths
+@function grid-col-width($cols) {
+	@return $grid-col-width * $cols;
+}
+
+
+
+// Common styles that can be hoisted without problems
+%grid__row {
+	margin-left: - $grid-gutter / 2;
+	margin-right: - $grid-gutter / 2;
+}
+
+%grid__col--padding {
+	padding-left: $grid-gutter / 2;
+	padding-right: $grid-gutter / 2;
+}
+
+
+
+// Mixins makes for easy includes in modules. Some styles are mixed in directly, so they can be easily overwritten in @media queries.
+@mixin grid-col($cols: 1, $padding: true) {
+	float: left;
+	width: grid-col-width($cols);
+
+	@if ($padding) {
+		@extend %grid__col--padding;
+	}
+}
+
+@mixin grid-push($cols) {
+	margin-left: grid-col-width($cols);
+}
+
+@mixin grid-row($margin: true) {
+	@if ($margin) {
+		@extend %grid__row;
+	}
+	&:after {
+		@extend %clearfix;
+	}
+}
