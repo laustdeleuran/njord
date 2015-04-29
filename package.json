@@ -2,7 +2,7 @@
   "name": "ljd-njord",
   "version": "0.1.0",
   "description": "Njord - Laust's small mini-framework",
-  "private": true,
+  "private": false,
   "engines": {
     "node": "0.10.x"
   },
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:laustdeleuran/njord.git"
+    "url": "git+ssh://git@bitbucket.org/laustdeleuran/njord.git"
   },
   "author": "LJD - http://ljd.dk",
   "license": "WTFPL <http://www.wtfpl.net/>",
@@ -20,11 +20,20 @@
     "del": "^1.1.1",
     "gulp": "^3.8.11",
     "gulp-plumber": "^1.0.0",
-    "gulp-rename": "^1.2.2",
     "gulp-sass": "^1.3.3",
     "gulp-util": "^3.0.4"
   },
   "devDependencies": {
     "gulp-bump": "^0.3.0"
-  }
+  },
+  "homepage": "https://bitbucket.org/laustdeleuran/njord#readme",
+  "main": "gulpfile.js",
+  "keywords": [
+    "scss",
+    "framework",
+    "grid",
+    "media",
+    "queries",
+    "helper"
+  ]
 }
