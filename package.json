@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/laustdeleuran/njord.git"
+    "url": "https://github.com/laustdeleuran/njord"
   },
   "author": "LJD - http://ljd.dk",
   "license": "WTFPL <http://www.wtfpl.net/>",
