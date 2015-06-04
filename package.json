@@ -16,7 +16,7 @@
     "url": "https://github.com/laustdeleuran/njord"
   },
   "author": "LJD - http://ljd.dk",
-  "license": "[WTFPL](http://www.wtfpl.net/)",
+  "license": "WTFPL - http://www.wtfpl.net/",
   "devDependencies": {
     "del": "^1.1.1",
     "gulp": "^3.8.11",
