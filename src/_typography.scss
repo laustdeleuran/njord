@@ -48,6 +48,8 @@ $browser-default-font-size: 16px !default;
 
 /// Convert font size to EMs
 ///
+/// @author [Compass](http://compass-style.org/)
+///
 /// @group _internals
 @function em($target, $context: $base-font-size) {
 	@if $target == 0 {
@@ -59,12 +61,16 @@ $browser-default-font-size: 16px !default;
 
 /// Return line-height based on number of lines
 ///
+/// @author [Compass](http://compass-style.org/)
+///
 /// @group _internals
 @function rhythm($lines, $font-size: $base-font-size) {
 	@return em($lines * $base-line-height, $font-size);
 }
 
 /// Calculate amount of vertical lines needed for given font-size
+///
+/// @author [Compass](http://compass-style.org/)
 ///
 /// @group _internals
 @function lines-for-font-size($font-size, $padding: true) {
@@ -83,6 +89,8 @@ $browser-default-font-size: 16px !default;
 }
 
 /// Establish baseline
+///
+/// @author [Compass](http://compass-style.org/)
 @mixin establish-baseline($font-size: $base-font-size, $relative-font-sizing: true) {
 	$relative-size: 100% * $font-size / $browser-default-font-size;
 	$lines: lines-for-font-size($font-size);
@@ -97,16 +105,22 @@ $browser-default-font-size: 16px !default;
 }
 
 /// Leader spacing
+///
+/// @author [Compass](http://compass-style.org/)
 @mixin leader($lines, $font-size: $base-font-size, $property: margin) {
 	#{$property}-top: rhythm($lines, $font-size);
 }
 
 /// Trailer spacing
+///
+/// @author [Compass](http://compass-style.org/)
 @mixin trailer($lines, $font-size: $base-font-size, $property: margin) {
 	#{$property}-bottom: rhythm($lines, $font-size);
 }
 
 /// Adjust leading
+///
+/// @author [Compass](http://compass-style.org/)
 ///
 /// @group _internals
 @mixin adjust-leading-to($lines, $font-size: $base-font-size) {
@@ -114,6 +128,8 @@ $browser-default-font-size: 16px !default;
 }
 
 /// Set font size and line height to play nice with your vertical rhythm
+///
+/// @author [Compass](http://compass-style.org/)
 @mixin adjust-font-size-to($to-size, $lines: auto, $from-size: $base-font-size) {
 	@if $lines == auto {
 		$lines: lines-for-font-size($to-size);
