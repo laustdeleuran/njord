@@ -36,7 +36,7 @@ I dislike CSS grid systems, as they mostly encourage implementation through clas
 
 ## Documentation
 
-The [documentation](https://laustdeleuran.github.io/njord) is generated using [SassDoc](http://sassdoc.com/).
+The [documentation](https://laustdeleuran.github.io/njord) is generated using [SassDoc](http://sassdoc.com/). It's [then deployed](https://github.com/X1011/git-directory-deploy) to Github pages.
 
 
 
