@@ -1,31 +1,65 @@
-/**
-* Various assorted helpers
-*
-* @section Framework
-* @author ljd
-*/
+////
+/// Various assorted helpers
+///
+/// @group helpers
+////
 
 
 
-/**
-* Silent classes
-**/
-
-// Hide text
+/// Basic text hider.
+///
+/// @example scss - Basic usage
+///	.hide-text {
+///		@extend %hide-text;
+///	}
+///
+/// @example scss - Basic usage output
+///	.hide-text {
+///		text-indent: 100%;
+///		white-space: nowrap;
+///		overflow: hidden;
+///	}
 %hide-text {
 	text-indent: 100%;
 	white-space: nowrap;
 	overflow: hidden;
 }
 
-// Create layout elements from pseudo elements with no content
+/// Create layout elements from pseudo elements with no content.
+///
+/// @example scss - Basic usage
+///	.pseudo-block:after {
+///		@extend %pseudo-block;
+///	}
+///
+/// @example scss - Basic usage output
+///	.pseudo-block:after {
+///		text-indent: 100%;
+///		white-space: nowrap;
+///		overflow: hidden;
+///		content: '';
+///		display: block;
+///	}
 %pseudo-block {
 	@extend %hide-text;	
 	content: '';
 	display: block;
 }
 
-// List helper (because you do this all the time)
+/// List helper (because you do this all the time).
+///
+/// @example scss - Basic usage
+///	.nav-list {
+///		@extend %list-helper;
+///	}
+///
+/// @example scss - Basic usage output
+///	.nav-list {
+///		display: block;
+///		padding: 0;
+///		margin: 0;
+///		list-style: none;
+///	}
 %list-helper {
 	display: block;
 	padding: 0;
@@ -33,7 +67,24 @@
 	list-style: none;
 }
 
-// Standard clearfix
+/// Standard clearfix
+///
+/// @example scss - Basic usage
+///	.float-container:after {
+///		@extend %clearfix;
+///	}
+///
+/// @example scss - Basic usage output
+///	.float-container:after {
+///		display: block;
+///		content: '';
+///		clear: both;
+///		height: 0;
+///	
+///		font-size: 0;
+///	
+///		visibility: hidden;
+///	}
 %clearfix {
 	display: block;
 	content: '';
@@ -47,11 +98,10 @@
 
 
 
-/**
-* Mixins
-**/
 
-// Polyfills for before/after elements (ie7 and ie8 if JS changes needed.)
+/// Polyfills for before elements (for IE7 and IE8 if JS changes needed). Be aware that you need to use JS to add <span class="before" /> (preferably via JS) to get the benefit of these polyfill styles.
+///
+/// @content Adds @content you pass into the two selectors
 @mixin poly-before {
 	&:before {
 		content: '';
@@ -62,6 +112,9 @@
 	}
 }
 
+/// Polyfills for after elements (for IE7 and IE8 if JS changes needed). Be aware that you need to use JS to add <span class="before" /> (preferably via JS) to get the benefit of these polyfill styles.
+///
+/// @content Adds @content you pass into the two selectors
 @mixin poly-after {
 	&:after {
 		content: '';
@@ -72,6 +125,25 @@
 	}
 }
 
+
+/// Link-active
+///
+/// @example scss - Basic usage
+///	.float-container:after {
+///		@extend %clearfix;
+///	}
+///
+/// @example scss - Basic usage output
+///	.float-container:after {
+///		display: block;
+///		content: '';
+///		clear: both;
+///		height: 0;
+///	
+///		font-size: 0;
+///	
+///		visibility: hidden;
+///	}
 @mixin link-active {
 	&:focus,
 	&:active,

@@ -9,6 +9,7 @@ var plumber = require('gulp-plumber');
 var bump = require('gulp-bump');
 var del = require('del');
 var sass = require('gulp-sass');
+var sassdoc = require('sassdoc');
 var gutil = require('gulp-util');
 var gulp = require('gulp');
 
@@ -17,12 +18,12 @@ var gulp = require('gulp');
 /**
  * Environment
  **/
- 
 // Determine whether running in production or not: If NODE_ENV=production or invoking gulp with --production argument.
 var isProduction = process.env.NODE_ENV === 'production' || !!gutil.env.production;
 
 // Style path
-var stylePath = './src/njord.scss';
+var styleMain = './src/njord.scss';
+var styleFiles = './src/**/*.scss';
 
 
 
@@ -36,7 +37,7 @@ gulp.task('clean', function(cb) {
 
 // Compile Compass stylesheets to CSS.
 gulp.task('style', function() {
-	gulp.src(stylePath)
+	gulp.src(styleMain)
 		.pipe(plumber())
 		.pipe(sass({
 			outputStyle: isProduction ? 'compressed' : 'expanded',
@@ -58,7 +59,16 @@ gulp.task('bump', function() {
 
 // Watch for file changes and build accordingly.
 gulp.task('watch', function() {
-	gulp.watch('./src/*.scss', ['style']);
+	gulp.watch(styleFiles, ['style']);
+});
+
+// Documentation
+gulp.task('sassdoc', function () {
+  return gulp.src(styleFiles)
+    .pipe(sassdoc({
+    	dest: './docs',
+    	groups: require('./sassdoc-groups')
+    }));
 });
 
 // Default tasks.
