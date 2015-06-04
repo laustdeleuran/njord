@@ -1,28 +1,73 @@
-/**
-* Grid helpers
-*
-* Basic home-rolled grid created by @ljd.
-*
-* @section Framework
-* @author ljd
-*/
+////
+/// I dislike CSS grid systems, as they mostly encourage implementation through classes in your markup, which in turn leads to confusion about when a module looks like what (breaking the seperation of concerns across your codebase). Secondly, I find a lot of them way too opinionated. So, for the odd event that I really need a grid system, I tend to roll my own. This is it.
+///
+/// @group 4.grid
+////
+
+
+
+/// Grid gutter definition. Overwrite this in your own project if needed.
+///
+/// @type Size
 $grid-gutter: 30px !default;
+
+/// Grid column count. Overwrite this in your own project if needed.
+///
+/// @type Int
 $grid-columns: 8 !default;
+
+/// Grid column width in percent (calculated).
+///
+/// @group _internals
+/// @type Int
 $grid-col-width: percentage(1/$grid-columns);
 
-// Generic helper for creating grid widths
+
+
+/// Internal helper for creating grid widths
+///
+/// @group _internals
+/// @param {Integer} $cols - Number of columns
+/// @return {Percentage} Column width
 @function grid-col-width($cols) {
 	@return $grid-col-width * $cols;
 }
 
 
 
-// Common styles that can be hoisted without problems
+/// Grid row styles that can be hoisted without problems
+///
+/// @group _internals
+///
+/// @example scss - Basic usage
+///	.grid__row {
+///		@extend %grid__row;
+///	}
+///	
+/// @example scss - Basic usage output
+///	.grid__row {
+///		margin-left: -15px;
+///		margin-right: -15px;
+///	}
 %grid__row {
 	margin-left: - $grid-gutter / 2;
 	margin-right: - $grid-gutter / 2;
 }
 
+/// Grid row padding styles that can be hoisted without problems
+///
+/// @group _internals
+///
+/// @example scss - Basic usage
+///	.grid__col--padding {
+///		@extend %grid__col--padding;
+///	}
+///	
+/// @example scss - Basic usage output
+///	.grid__col--padding {
+///		padding-left: 15px;
+///		padding-right: 15px;
+///	}
 %grid__col--padding {
 	padding-left: $grid-gutter / 2;
 	padding-right: $grid-gutter / 2;
@@ -30,7 +75,25 @@ $grid-col-width: percentage(1/$grid-columns);
 
 
 
-// Mixins makes for easy includes in modules. Some styles are mixed in directly, so they can be easily overwritten in @media queries.
+/// Grid column mixin for easy usage in projects.
+/// 
+/// @param {Integer} $cols [1] - Number of columns
+/// @param {Bool} $padding [true] - Add padding
+///
+/// @example scss - Basic usage
+///	.my-column {
+///		@include grid-col(1);
+///	}
+///
+/// @example scss - Basic usage output
+///	%grid__col--padding, .my-column { // Padding is hoisted via silent classes. This allows for easier overwrites.
+///		padding-left: 15px;
+///		padding-right: 15px; 
+///	}
+///	.my-column { // Some styles are mixed in directly, so they can be easily overwritten in @media queries.
+///		float:left;
+///		width: 12.5%; // 1 column default width
+///	}
 @mixin grid-col($cols: 1, $padding: true) {
 	float: left;
 	width: grid-col-width($cols);
@@ -40,10 +103,48 @@ $grid-col-width: percentage(1/$grid-columns);
 	}
 }
 
-@mixin grid-push($cols) {
+/// Push grid column N amount of columns. Could theoretically be used to pull columns by passing negative `$cols
+///
+/// @param {Integer} $cols [1] - Number of columns
+///
+/// @example scss - Basic usage
+///	.my-column {
+///		@include grid-push(1);
+///	}
+///
+/// @example scss - Basic usage output
+///	.my-column { // Some styles are mixed in directly, so they can be easily overwritten in @media queries.
+///		margin-left: 12.5%; // 1 column default width
+///	}
+@mixin grid-push($cols: 1) {
 	margin-left: grid-col-width($cols);
 }
 
+/// Grid row container. Clears float and adds negative margin to allow for grid gutters. 
+///
+/// @param {Bool} $margin [true] - Add negative margin
+///
+/// @example scss - Basic usage
+///	.my-row {
+///		@include grid-row();
+///	}
+///
+///
+/// @example scss - Basic usage output
+///	.my-row:after { // Clearfix is hoisted via silent class in Helpers. 
+///		display: block;
+///		content: '';
+///		clear: both;
+///		height: 0;
+///
+///		font-size: 0;
+///
+///		visibility: hidden;
+///	}
+///	%grid__row, .my-row { // Margin is hoisted via silent classes. This allows for easier overwrites.
+///		margin-left: -15px;
+///		margin-right: -15px;
+///	}
 @mixin grid-row($margin: true) {
 	@if ($margin) {
 		@extend %grid__row;
