@@ -4,9 +4,6 @@
   "title": "Njord (Njörðr)",
   "description": "Njord (Njörðr) - Laust's small mini-framework",
   "private": false,
-  "engines": {
-    "node": "0.10.x"
-  },
   "scripts": {
     "start": "gulp build",
     "test": "echo \"Error: no test specified\""
