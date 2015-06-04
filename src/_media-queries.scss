@@ -1,15 +1,46 @@
-/**
-* Media query mixin for better breakpoint alignment, ported from Inuit CSS
-*
-* @section Framework
-* @author ljd
-*/
+////
+/// Media queries
+/// 
+///
+/// @group 2.mediaqueries
+////
+
+/// Desktop width
+///
+/// @type Size
 $mq-desktop: 1200px !default;
+
+/// Tablet horizontal width
+///
+/// @type Size
 $mq-tablet-horizontal: 1024px !default;
+
+/// Tablet vertical width
+///
+/// @type Size
 $mq-tablet-vertical: 768px !default;
+
+/// Mobile horizontal width
+///
+/// @type Size
 $mq-mobile-horizontal: 568px !default;
+
+/// Mobile vertical width
+///
+/// @type Size
 $mq-mobile-vertical: 320px !default;
 
+/// This is my preferred implementation of a media query mixin, taken from an older version of [inuitcss](http://inuitcss.com/). It supports both mobile and desktop first, and uses device name abstractions (`tabletV`, `mobileH` etc.), to make coding easy. I get that screen size isn't the same as device type, but I feel that it provides a good metaphor.
+///
+/// @param $point - Should be either `print`, `retina`, `desktop`, `tabletH`, `tabletV`, `mobileH`, `mobileV` or a width measurement.
+/// @param {Bool} $max-width [false] - If set to true, generates `max-width` media queries, e.g. *desktop first*.
+///
+/// @example scss - Basic usage
+///	.module { // The mixin could be used outside selectors as well.
+///		@include media(tabletV) {
+///			// Tablet and up styles go here
+///		}
+///	}
 @mixin media($point, $max-width: false) {
 	@if $point == print {
 		@media print {

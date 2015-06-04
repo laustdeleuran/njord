@@ -1,14 +1,14 @@
 ////
-/// Basic grid system
+/// I dislike CSS grid systems, as they mostly encourage implementation through classes in your markup, which in turn leads to confusion about when a module looks like what (breaking the seperation of concerns across your codebase). Secondly, I find a lot of them way too opinionated. So, for the odd event that I really need a grid system, I tend to roll my own. This is it.
 ///
-/// @group grid
+/// @group 4.grid
 ////
 
 
 
 /// Grid gutter definition. Overwrite this in your own project if needed.
 ///
-/// @type Pixels
+/// @type Size
 $grid-gutter: 30px !default;
 
 /// Grid column count. Overwrite this in your own project if needed.
@@ -18,7 +18,7 @@ $grid-columns: 8 !default;
 
 /// Grid column width in percent (calculated).
 ///
-/// @group internals
+/// @group _internals
 /// @type Int
 $grid-col-width: percentage(1/$grid-columns);
 
@@ -26,7 +26,7 @@ $grid-col-width: percentage(1/$grid-columns);
 
 /// Internal helper for creating grid widths
 ///
-/// @group internals
+/// @group _internals
 /// @param {Integer} $cols - Number of columns
 /// @return {Percentage} Column width
 @function grid-col-width($cols) {
@@ -37,7 +37,7 @@ $grid-col-width: percentage(1/$grid-columns);
 
 /// Grid row styles that can be hoisted without problems
 ///
-/// @group internals
+/// @group _internals
 ///
 /// @example scss - Basic usage
 ///	.grid__row {
@@ -56,7 +56,7 @@ $grid-col-width: percentage(1/$grid-columns);
 
 /// Grid row padding styles that can be hoisted without problems
 ///
-/// @group internals
+/// @group _internals
 ///
 /// @example scss - Basic usage
 ///	.grid__col--padding {

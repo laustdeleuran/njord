@@ -1,7 +1,7 @@
 ////
-/// Various assorted helpers
+/// The most broadly named module encompasses a wide range of - well, erm - helpers. Everything from small functions and silent classes to large mixins. 
 ///
-/// @group helpers
+/// @group 1.helpers
 ////
 
 
@@ -101,7 +101,7 @@
 
 /// Polyfills for before elements (for IE7 and IE8 if JS changes needed). Be aware that you need to use JS to add <span class="before" /> (preferably via JS) to get the benefit of these polyfill styles.
 ///
-/// @content Adds @content you pass into the two selectors
+/// @content
 @mixin poly-before {
 	&:before {
 		content: '';
@@ -114,7 +114,7 @@
 
 /// Polyfills for after elements (for IE7 and IE8 if JS changes needed). Be aware that you need to use JS to add <span class="before" /> (preferably via JS) to get the benefit of these polyfill styles.
 ///
-/// @content Adds @content you pass into the two selectors
+/// @content
 @mixin poly-after {
 	&:after {
 		content: '';
@@ -126,23 +126,27 @@
 }
 
 
-/// Link-active
+/// Active styles for link-type elements
+///
+/// @content
 ///
 /// @example scss - Basic usage
-///	.float-container:after {
-///		@extend %clearfix;
-///	}
+///	a {
+///		text-decoration: none;
+///
+///		@include link-active {
+///			text-decoration: underline;
+///		}
+/// }
 ///
 /// @example scss - Basic usage output
-///	.float-container:after {
-///		display: block;
-///		content: '';
-///		clear: both;
-///		height: 0;
-///	
-///		font-size: 0;
-///	
-///		visibility: hidden;
+///	a {
+///		text-decoration: none;
+///	}
+///	a:focus,
+///	a:active,
+///	.no-touchevents a:hover {
+///		text-decoration: underline;
 ///	}
 @mixin link-active {
 	&:focus,
@@ -152,7 +156,21 @@
 	}
 }
 
-// Mixin for scrolling shadows - http://codepen.io/laustdeleuran/pen/DBaAu
+/// Mixin for scrolling shadows. [Codepen example](http://codepen.io/laustdeleuran/pen/DBaAu).
+///
+/// @param {Letter} $direction [Y] - Determines scroll direction. Should be `Y` or `X`.
+/// @param {Color} $background-color [rgba(255, 255, 255)] - Container background color.
+/// @param {Number} $shadow-intensity [0.2] - Shadow opacity.
+/// @param {Color} $shadow-color [0.2] - Shadow color.
+/// @param {Pixels} $cover-size [40px] - Set the size of the shadow covering gradient.
+/// @param {Pixels} $shadow-size [14px] - Set the size of the shadow.
+///
+/// @example scss - Basic usage
+///	div {
+///		overflow: auto;
+///		height: 300px;
+///		@include scrolling-shadows();
+/// }
 @mixin scrolling-shadows($direction: Y, $background-color: rgb(255, 255, 255), $shadow-intensity: 0.2, $shadow-color: rgb(0,0,0), $cover-size: 40px, $shadow-size: 14px) {
 
 	@if $direction == X {
@@ -192,7 +210,18 @@
 	}
 }
 
-// CSS Arrows mixin // https://gist.github.com/bpainter/1085320
+/// CSS Arrows mixin
+///
+/// @author [bpainter](https://gist.github.com/bpainter/1085320)
+///
+/// @param {String} $direction - Arrow direction. Should be `'top'`, `'right'`, `'bottom'`, `'left'`, `'top-left'`, `'top-right'`, `'bottom-left'` or `'bottom-right'`.
+/// @param {Color} $color - Arrow color.
+/// @param {Size} $size - Arrow size.
+///
+/// @example scss - Basic usage
+///	.arrow-up {
+///		@include arrow('top', black, 10px);
+/// }
 @mixin arrow($direction, $color, $size) {
 	display:block;
 	height: 0;
@@ -235,13 +264,49 @@
 	}
 }
 
-// Experimental support mixin ported from Compass
+
+
+/// Experimental support for Mozilla
+///
+/// @group _internals
+/// @type Int
 $experimental-support-for-mozilla: true !default;
+
+/// Experimental support for Webkit
+///
+/// @group _internals
+/// @type Bool
 $experimental-support-for-webkit: true !default;
+
+/// Experimental support for Opera
+///
+/// @group _internals
+/// @type Bool
 $experimental-support-for-opera: true !default;
+
+/// Experimental support for Microsoft
+///
+/// @group _internals
+/// @type Bool
 $experimental-support-for-microsoft: true !default;
+
+/// Experimental support for KHTML
+///
+/// @group _internals
+/// @type Bool
 $experimental-support-for-khtml: false !default;
-$experimental-support-for-svg: false !default;
+
+/// Experimental support mixin.
+///
+/// @author [Compass](http://compass-style.org/)
+///
+/// @param $property
+/// @param $value
+///
+/// @example scss - Basic usage
+///	.box-sizing {
+///		@include experimental(box-sizing, border-box);
+/// }
 @mixin experimental($property, $value,
   $moz      : $experimental-support-for-mozilla,
   $webkit   : $experimental-support-for-webkit,

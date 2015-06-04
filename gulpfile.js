@@ -67,6 +67,7 @@ gulp.task('sassdoc', function () {
   return gulp.src(styleFiles)
     .pipe(sassdoc({
     	dest: './docs',
+    	descriptionPath: './readme.md',
     	groups: require('./sassdoc-groups')
     }));
 });

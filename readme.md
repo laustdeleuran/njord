@@ -36,7 +36,7 @@ I dislike CSS grid systems, as they mostly encourage implementation through clas
 
 ## Documentation
 
-TODO: Write sassdoc.
+The [documentation](https://laustdeleuran.github.io/njord) is generated using [SassDoc](http://sassdoc.com/).
 
 
 
