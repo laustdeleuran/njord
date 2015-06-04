@@ -137,7 +137,7 @@
 ///		@include link-active {
 ///			text-decoration: underline;
 ///		}
-/// }
+///	}
 ///
 /// @example scss - Basic usage output
 ///	a {
@@ -170,7 +170,7 @@
 ///		overflow: auto;
 ///		height: 300px;
 ///		@include scrolling-shadows();
-/// }
+///	}
 @mixin scrolling-shadows($direction: Y, $background-color: rgb(255, 255, 255), $shadow-intensity: 0.2, $shadow-color: rgb(0,0,0), $cover-size: 40px, $shadow-size: 14px) {
 
 	@if $direction == X {
@@ -221,7 +221,7 @@
 /// @example scss - Basic usage
 ///	.arrow-up {
 ///		@include arrow('top', black, 10px);
-/// }
+///	}
 @mixin arrow($direction, $color, $size) {
 	display:block;
 	height: 0;
@@ -306,7 +306,7 @@ $experimental-support-for-khtml: false !default;
 /// @example scss - Basic usage
 ///	.box-sizing {
 ///		@include experimental(box-sizing, border-box);
-/// }
+///	}
 @mixin experimental($property, $value,
   $moz      : $experimental-support-for-mozilla,
   $webkit   : $experimental-support-for-webkit,
