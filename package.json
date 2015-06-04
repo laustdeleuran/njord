@@ -1,7 +1,7 @@
 {
   "name": "ljd-njord",
   "title": "Njord (Njörðr) - Laust's small mini-framework",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Njord (Njörðr) - Laust's small mini-framework",
   "private": false,
   "engines": {
