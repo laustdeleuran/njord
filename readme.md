@@ -1,6 +1,6 @@
 # Njord (Njörðr)
 
-_Njörðr_ is a collection of SCSS helpers and mixins I use in the majority of my projects. It's provided as-is and is available on [Github](https://github.com/laustdeleuran/njord) and [npm](https://www.npmjs.com/package/ljd-njord). I usually use (a selection of) these in combination with [Bourbon.io](http://bourbon.io/). Your mileage may vary. 
+_Njörðr_ is a collection of SCSS helpers and mixins I use in the majority of my projects. It's provided as-is and is available on [GitHub](https://github.com/laustdeleuran/njord) and [npm](https://www.npmjs.com/package/ljd-njord). I usually use (a selection of) these in combination with [Bourbon.io](http://bourbon.io/). Your mileage may vary. 
 
 
 
