@@ -15,6 +15,7 @@
   "author": "LJD - http://ljd.dk",
   "license": "WTFPL - http://www.wtfpl.net/",
   "devDependencies": {
+    "bourbon": "^4.2.3",
     "del": "^1.1.1",
     "gulp": "^3.8.11",
     "gulp-bump": "^0.3.0",
@@ -31,6 +32,14 @@
     "grid",
     "media",
     "queries",
-    "helper"
+    "helper",
+    "bourbon",
+    "columns",
+    "grid",
+    "layout",
+    "media",
+    "media-queries",
+    "sass",
+    "typograhy"
   ]
 }
