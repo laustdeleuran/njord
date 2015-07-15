@@ -1,5 +1,5 @@
 ////
-/// A bunch of typography related mixins to support vertical rhythm, originally ported from [Compass](http://compass-style.org/) when I started to use [LibSass](http://libsass.org/). In combination with [Bourbon's modular scale](http://bourbon.io/docs/#modular-scale) it's pretty neat.
+/// A bunch of typography related mixins to support vertical rhythm, originally ported from [Compass](http://compass-style.org/) when I started to use [LibSass](http://libsass.org/). Depends on [Bourbon's modular scale](http://bourbon.io/docs/#modular-scale).
 ///
 /// @group 3.typography
 ////
@@ -7,16 +7,16 @@
 /// Base font size
 ///
 /// @type Size
-$base-font-size: 18px !default;
+$em-size: 18px !default;
 
 /// Base line height
 ///
 /// @type Size
-$base-line-height: 14px !default;
+$base-line-height: 30px !default;
 
 /// Minimum line padding
 ///
-/// @type Size
+/// @type Bool
 $min-line-padding: 2px !default;
 
 /// Round vertical rhythm to nearest half line height
@@ -30,7 +30,6 @@ $round-to-nearest-half-line: true !default;
 /// @type Size
 $browser-default-font-size: 16px !default;
 
-
 /// Strip units - see [StackOverflow for details](http://stackoverflow.com/questions/12328259/how-do-you-strip-the-unit-from-any-number-in-sass).
 ///
 /// @group _internals
@@ -39,33 +38,6 @@ $browser-default-font-size: 16px !default;
 /// @return {Number}
 @function strip-units($number) {
 	@return $number / ($number * 0 + 1);
-}
-
-/// Convert Bourbon's modular scale to pixels
-@function modular-scale-pixels($scale) {
-	@return strip-units(modular-scale($scale)) * $base-font-size;
-}
-
-/// Convert font size to EMs
-///
-/// @author [Compass](http://compass-style.org/)
-///
-/// @group _internals
-@function em($target, $context: $base-font-size) {
-	@if $target == 0 {
-		@return 0;
-	}
-	
-	@return $target / $context + 0em;
-}
-
-/// Return line-height based on number of lines
-///
-/// @author [Compass](http://compass-style.org/)
-///
-/// @group _internals
-@function rhythm($lines, $font-size: $base-font-size) {
-	@return em($lines * $base-line-height, $font-size);
 }
 
 /// Calculate amount of vertical lines needed for given font-size
@@ -88,10 +60,16 @@ $browser-default-font-size: 16px !default;
 	@return $lines;
 }
 
+/// Get lines in EM based on context
+@function lines($lines, $from-size: 1em) {
+	@return em($lines * $base-line-height) / $from-size * 1em;
+}
+
 /// Establish baseline
-///
-/// @author [Compass](http://compass-style.org/)
-@mixin establish-baseline($font-size: $base-font-size, $relative-font-sizing: true) {
+/// 
+/// @param {Size} $font-size - Optional. In pixels.
+/// @param {Bool} $relative-font-size - Optional.
+@mixin establish-baseline($font-size: $em-base, $relative-font-sizing: true) {
 	$relative-size: 100% * $font-size / $browser-default-font-size;
 	$lines: lines-for-font-size($font-size);
 
@@ -104,36 +82,17 @@ $browser-default-font-size: 16px !default;
 	}
 }
 
-/// Leader spacing
-///
-/// @author [Compass](http://compass-style.org/)
-@mixin leader($lines, $font-size: $base-font-size, $property: margin) {
-	#{$property}-top: rhythm($lines, $font-size);
-}
+/// Adjust font size and line height to modular scale point
+/// 
+/// @param {Integer} $to-size - Modular scale point.
+/// @param {Integer} $lines - Optional. Number of lines.
+/// @param {Size} $from-size - Optional. Context font size in EMs.  
+@mixin adjust-font-size-to($to-size, $lines: auto, $from-size: 1em) {
+	$to-size-px: strip-units($to-size * $from-size) * $em-base;
 
-/// Trailer spacing
-///
-/// @author [Compass](http://compass-style.org/)
-@mixin trailer($lines, $font-size: $base-font-size, $property: margin) {
-	#{$property}-bottom: rhythm($lines, $font-size);
-}
-
-/// Adjust leading
-///
-/// @author [Compass](http://compass-style.org/)
-///
-/// @group _internals
-@mixin adjust-leading-to($lines, $font-size: $base-font-size) {
-	line-height: rhythm($lines, $font-size);
-}
-
-/// Set font size and line height to play nice with your vertical rhythm
-///
-/// @author [Compass](http://compass-style.org/)
-@mixin adjust-font-size-to($to-size, $lines: auto, $from-size: $base-font-size) {
 	@if $lines == auto {
-		$lines: lines-for-font-size($to-size);
+		$lines: lines-for-font-size($to-size-px);
 	}
-	font-size: em($to-size, $from-size);
-	@include adjust-leading-to($lines, $to-size);
+	font-size: $to-size;
+	line-height: $lines * $base-line-height / $to-size-px;
 }

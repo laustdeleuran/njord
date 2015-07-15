@@ -22,6 +22,7 @@ var gulp = require('gulp');
 var isProduction = process.env.NODE_ENV === 'production' || !!gutil.env.production;
 
 // Style path
+var styleExamples = './examples/**/*.scss';
 var styleMain = './src/njord.scss';
 var styleFiles = './src/**/*.scss';
 
@@ -36,10 +37,23 @@ gulp.task('clean', function(cb) {
 });
 
 // Compile Compass stylesheets to CSS.
+gulp.task('examples', function() {
+	gulp.src(styleExamples)
+		.pipe(plumber())
+		.pipe(sass({
+			precision: 10,
+			outputStyle: isProduction ? 'compressed' : 'expanded',
+			errLogToConsole: true
+		}))
+		.pipe(gulp.dest('./examples'));
+});
+
+// Compile Compass stylesheets to CSS.
 gulp.task('style', function() {
 	gulp.src(styleMain)
 		.pipe(plumber())
 		.pipe(sass({
+			precision: 10,
 			outputStyle: isProduction ? 'compressed' : 'expanded',
 			errLogToConsole: true
 		}))
@@ -60,6 +74,7 @@ gulp.task('bump', function() {
 // Watch for file changes and build accordingly.
 gulp.task('watch', function() {
 	gulp.watch(styleFiles, ['style']);
+	gulp.watch([styleFiles, styleExamples], ['examples']);
 });
 
 // Documentation
