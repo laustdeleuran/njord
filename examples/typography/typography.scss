@@ -1,0 +1,47 @@
+// Settings
+$em-base: 18px;
+$base-line-height: 30px;
+
+// Imports
+@import "../../src/njord";
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+
+// Reset
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+h1, h2, h3, ul, ol, pre, blockquote, p {
+	margin: 0;
+	padding: 0;
+}
+
+// Layout
+html {
+	padding: $base-line-height;
+
+	background: url('baseline.gif');
+	@include establish-baseline();
+}
+h1, h2, h3 {
+	margin-bottom: lines(1, modular-scale(3));
+	
+	@include adjust-font-size-to(modular-scale(3));
+}
+h2, {
+	margin: lines(1, modular-scale(2)) 0;
+	
+	@include adjust-font-size-to(modular-scale(2));
+}
+h3 {
+	margin: lines(1, em(24px)) 0;
+	
+	@include adjust-font-size-to(em(24px));
+}
+ul, ol, blockquote, pre, p {
+	margin-bottom: lines(0.5);
+}
+pre, code {
+	@include adjust-font-size-to(modular-scale(0));
+}

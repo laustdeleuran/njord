@@ -65,10 +65,12 @@ $grid-col-width: percentage(1/$grid-columns);
 ///	
 /// @example scss - Basic usage output
 ///	.grid__col--padding {
+///		box-sizing: border-box;
 ///		padding-left: 15px;
 ///		padding-right: 15px;
 ///	}
 %grid__col--padding {
+	box-sizing: border-box;
 	padding-left: $grid-gutter / 2;
 	padding-right: $grid-gutter / 2;
 }
