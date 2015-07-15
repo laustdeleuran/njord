@@ -84,7 +84,7 @@ $browser-default-font-size: 16px !default;
 
 /// Adjust font size and line height to modular scale point
 /// 
-/// @param {Integer} $to-size - Modular scale point.
+/// @param {Integer} $to-size - Font size in EMs.
 /// @param {Integer} $lines - Optional. Number of lines.
 /// @param {Size} $from-size - Optional. Context font size in EMs.  
 @mixin adjust-font-size-to($to-size, $lines: auto, $from-size: 1em) {
@@ -93,6 +93,6 @@ $browser-default-font-size: 16px !default;
 	@if $lines == auto {
 		$lines: lines-for-font-size($to-size-px);
 	}
-	font-size: modular-scale($to-size);
+	font-size: $to-size;
 	line-height: $lines * $base-line-height / $to-size-px;
 }
