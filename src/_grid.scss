@@ -16,12 +16,6 @@ $grid-gutter: 30px !default;
 /// @type Int
 $grid-columns: 8 !default;
 
-/// Grid column width in percent (calculated).
-///
-/// @group _internals
-/// @type Int
-$grid-col-width: percentage(1/$grid-columns);
-
 
 
 /// Internal helper for creating grid widths
@@ -30,7 +24,7 @@ $grid-col-width: percentage(1/$grid-columns);
 /// @param {Integer} $cols - Number of columns
 /// @return {Percentage} Column width
 @function grid-col-width($cols) {
-	@return $grid-col-width * $cols;
+	@return percentage($cols/$grid-columns);
 }
 
 
