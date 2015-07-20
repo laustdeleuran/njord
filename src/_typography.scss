@@ -88,11 +88,11 @@ $browser-default-font-size: 16px !default;
 /// @param {Integer} $lines - Optional. Number of lines.
 /// @param {Size} $from-size - Optional. Context font size in EMs.  
 @mixin adjust-font-size-to($to-size, $lines: auto, $from-size: 1em) {
-	$to-size-px: strip-units($to-size * $from-size) * $em-base;
+	$to-size-px: strip-units($to-size) * $em-base;
 
 	@if $lines == auto {
 		$lines: lines-for-font-size($to-size-px);
 	}
-	font-size: $to-size;
+	font-size: $to-size / strip-units($from-size);
 	line-height: $lines * $base-line-height / $to-size-px;
 }
