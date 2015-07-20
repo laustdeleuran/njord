@@ -21,8 +21,12 @@ h1, h2, h3, ul, ol, pre, blockquote, p {
 html {
 	padding: $base-line-height;
 
-	background: url('baseline.gif');
 	@include establish-baseline();
+
+	@include background-image(linear-gradient(#ccc 0%, #fff percentage(1px/$base-line-height), #fff 50%, #eee 50%, #fff percentage(($base-line-height/2+1px)/$base-line-height)));
+	background-position: top left;
+	background-repeat: repeat;
+	background-size: 1px $base-line-height;
 }
 h1, h2, h3 {
 	margin-bottom: lines(1, modular-scale(3));
