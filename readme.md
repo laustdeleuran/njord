@@ -4,9 +4,15 @@ _Njörðr_ is a collection of SCSS helpers and mixins I use in the majority of m
 
 
 
+## Documentation
+
+The [documentation](https://laustdeleuran.github.io/njord) is generated using [SassDoc](http://sassdoc.com/). It's [then deployed](https://github.com/X1011/git-directory-deploy) to Github pages.
+
+
+
 ## Contents
 
-Every module (file) of the framework can be used on it's own, and should be contined and portable.
+Every module (file) of the framework can be used on it's own, and should be self-contained and portable.
 
 
 
@@ -31,12 +37,6 @@ A bunch of typography related mixins to support vertical rythm, originally porte
 ### Grid
 
 I dislike CSS grid systems, as they mostly encourage implementation through classes in your markup, which in turn leads to confusion about when a module looks like what (breaking the seperation of concerns across your codebase). Secondly, I find a lot of them way too opinionated. So, for the odd event that I really need a grid system, I tend to roll my own. This is it.
-
-
-
-## Documentation
-
-The [documentation](https://laustdeleuran.github.io/njord) is generated using [SassDoc](http://sassdoc.com/). It's [then deployed](https://github.com/X1011/git-directory-deploy) to Github pages.
 
 
 
