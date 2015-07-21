@@ -1,0 +1,78 @@
+// Imports
+@import "../../src/media-queries";
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+
+// Reset
+html,
+body,
+div {
+	margin: 0;
+	padding: 0;
+}
+html {
+	margin: 10px;
+}
+
+// Media queries
+.mq {
+	height: 100px;
+
+	position: relative;
+
+	background: #999;
+
+	&:after {
+		content: 'Default';
+
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+
+		text-align: center;
+		color: #fff;
+		line-height: 100px;
+	}
+	@include media(200px, true) { // max-width: 200px
+		&:after {
+			content: 'custom:max-width:200px;';
+			background: #600;
+		}
+	}
+	@include media(mobileV) {
+		&:after {
+			content: 'mobileV';
+			background: #900;
+		}
+	}
+	@include media(mobileH) {
+		&:after {
+			content: 'mobileH';
+			background: #930;
+		}
+	}
+	@include media(tabletV) {
+		&:after {
+			content: 'tabletV';
+			background: #c00;
+		}
+	}
+	@include media(tabletH) {
+		&:after {
+			content: 'tabletH';
+			background: #c30;
+		}
+	}
+	@include media(desktop) {
+		&:after {
+			content: 'desktop';
+			background: #f00;
+		}
+	}
+	@include media(1300px) {
+		&:after {
+			content: 'custom:1300px;';
+			background: #f30;
+		}
+	}
+}
