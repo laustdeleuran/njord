@@ -1,0 +1,43 @@
+// Settings
+$grid-columns: 12;
+$base-unit: 10px;
+
+// Imports
+@import "../../src/njord";
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+
+// Reset
+html,
+body,
+div,
+article,
+p {
+	margin: 0;
+	padding: 0;
+}
+h1, article {
+	margin: 0 0 $base-unit;
+}
+html {
+	margin: $base-unit * 4;
+}
+
+// Grid
+.row {
+	@include grid-row();
+}
+.col-1 {
+	@include grid-col(1);
+}
+.col-4 {
+	@include grid-col(4);
+}
+.col-6 {
+	@include grid-col(6);
+}
+.col-8 {
+	@include grid-col(8);
+}
+.col-12 {
+	@include grid-col(12);
+}
