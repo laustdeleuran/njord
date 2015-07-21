@@ -1,9 +1,8 @@
 // Settings
 $grid-columns: 12;
-$base-unit: 10px;
 
 // Imports
-@import "../../src/njord";
+@import "../../src/grid";
 @import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
 
 // Reset
@@ -16,10 +15,10 @@ p {
 	padding: 0;
 }
 h1, article {
-	margin: 0 0 $base-unit;
+	margin: 0 0 10px;
 }
 html {
-	margin: $base-unit * 4;
+	margin: 30px;
 }
 
 // Grid
