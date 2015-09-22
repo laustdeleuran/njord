@@ -15,12 +15,12 @@
 ///
 /// @example scss - Basic usage output
 ///	.hide-text {
-///		text-indent: 100%;
+///		text-indent: 200%;
 ///		white-space: nowrap;
 ///		overflow: hidden;
 ///	}
 %hide-text {
-	text-indent: 100%;
+	text-indent: 200%;
 	white-space: nowrap;
 	overflow: hidden;
 }
