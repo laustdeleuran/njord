@@ -15,14 +15,43 @@
 ///
 /// @example scss - Basic usage output
 ///	.hide-text {
-///		text-indent: 100%;
+///		text-indent: 200%;
 ///		white-space: nowrap;
 ///		overflow: hidden;
 ///	}
 %hide-text {
-	text-indent: 100%;
+	text-indent: 200%;
 	white-space: nowrap;
 	overflow: hidden;
+}
+
+/// Screen reader only content - [See the explanation on A11Y Project](http://a11yproject.com/posts/how-to-hide-content/)
+///
+/// @example scss - Basic usage
+///	.sr-only {
+///		@extend %sr-only;
+///	}
+///
+/// @example scss - Basic usage output
+///	.sr-only {
+///		position: absolute;
+///		width: 1px;
+///		height: 1px;
+///		margin: -1px;
+///		padding: 0;
+///		overflow: hidden;
+///		clip: rect(0,0,0,0);
+///		border: 0;
+///	}
+%sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	border: 0;
 }
 
 /// Create layout elements from pseudo elements with no content.
