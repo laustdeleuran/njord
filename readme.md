@@ -50,7 +50,6 @@ If anything leaves a bad taste in your mouth, contact info can be found at [ljd.
 
 
 
-
 ## License
 
 _Njörðr_ is licensed under [WTFPL](http://www.wtfpl.net/).
