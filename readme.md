@@ -50,7 +50,12 @@ If anything leaves a bad taste in your mouth, contact info can be found at [ljd.
 
 
 
-
 ## License
 
 _Njörðr_ is licensed under [WTFPL](http://www.wtfpl.net/).
+
+
+
+## Name
+
+_Njörðr_ is a God from old [Norse mythology](https://en.wikipedia.org/wiki/Nj%C3%B6r%C3%B0r). It's also the old form of the name of my nephew, who's currently the sweetest boy alive. 

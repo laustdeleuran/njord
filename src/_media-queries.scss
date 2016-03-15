@@ -59,12 +59,12 @@ $mq-mobile-vertical: 320px !default;
 					@content;
 				}
 			}
-			@if $point == tabletH {
+			@else if $point == tabletH {
 				@media screen and (max-width:$mq-tablet-horizontal - 1px) {
 					@content;
 				}
 			}
-			@if $point == tabletV {
+			@else if $point == tabletV {
 				@media screen and (max-width:$mq-tablet-vertical - 1px) {
 					@content;
 				}
@@ -91,12 +91,12 @@ $mq-mobile-vertical: 320px !default;
 					@content;
 				}
 			}
-			@if $point == tabletH {
+			@else if $point == tabletH {
 				@media screen and (min-width:$mq-tablet-horizontal) {
 					@content;
 				}
 			}
-			@if $point == tabletV {
+			@else if $point == tabletV {
 				@media screen and (min-width:$mq-tablet-vertical) {
 					@content;
 				}
