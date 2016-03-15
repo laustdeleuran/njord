@@ -3,7 +3,6 @@
 ///
 /// @group 4.grid
 ////
-@import "helpers";
 
 
 
@@ -117,7 +116,7 @@ $grid-columns: 8 !default;
 	margin-left: grid-col-width($cols);
 }
 
-/// Grid row container. Clears float and adds negative margin to allow for grid gutters. 
+/// Grid row container. Clears float and adds negative margin to allow for grid gutters. Clears via [`%clearfix` in Helpers](#1.helpers-placeholder-clearfix), so remember to include or create that if you use the modules by themselves.
 ///
 /// @param {Bool} $margin [true] - Add negative margin
 ///
