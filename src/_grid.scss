@@ -69,12 +69,34 @@ $grid-columns: 8 !default;
 	padding-right: $grid-gutter / 2;
 }
 
+/// Grid row padding styles as an include for more effortless (but bloatier) coding
+///
+/// @group _internals
+///
+/// @example scss - Basic usage
+///	.grid__col--padding {
+///		@include grid-col-padding();
+///	}
+///	
+/// @example scss - Basic usage output
+///	.grid__col--padding {
+///		box-sizing: border-box;
+///		padding-left: 15px;
+///		padding-right: 15px;
+///	}
+@mixin grid-col-padding() {
+	box-sizing: border-box;
+	padding-left: $grid-gutter / 2;
+	padding-right: $grid-gutter / 2;
+}
+
 
 
 /// Grid column mixin for easy usage in projects.
 /// 
 /// @param {Integer} $cols [1] - Number of columns
 /// @param {Bool} $padding [true] - Add padding
+/// @param {Bool} $hoist [false] - Determines if padding should be hoisted via silent classes. Off by default, but produces bloatier code. If used, be sure to only use outside @media queries.
 ///
 /// @example scss - Basic usage
 ///	.my-column {
@@ -82,20 +104,23 @@ $grid-columns: 8 !default;
 ///	}
 ///
 /// @example scss - Basic usage output
-///	%grid__col--padding, .my-column { // Padding is hoisted via silent classes. This allows for easier overwrites.
-///		padding-left: 15px;
-///		padding-right: 15px; 
-///	}
 ///	.my-column { // Some styles are mixed in directly, so they can be easily overwritten in @media queries.
 ///		float:left;
 ///		width: 12.5%; // 1 column default width
+///		box-sizing: border-box;
+///		padding-left: 15px;
+///		padding-right: 15px;
 ///	}
-@mixin grid-col($cols: 1, $padding: true) {
+@mixin grid-col($cols: 1, $padding: true, $hoist: false) {
 	float: left;
 	width: grid-col-width($cols);
 
 	@if ($padding) {
-		@extend %grid__col--padding;
+		@if ($hoist) {
+			@extend %grid__col--padding;
+		} @else {
+			@include grid-col-padding();
+		}
 	}
 }
 
@@ -116,7 +141,7 @@ $grid-columns: 8 !default;
 	margin-left: grid-col-width($cols);
 }
 
-/// Grid row container. Clears float and adds negative margin to allow for grid gutters. Clears via [`%clearfix` in Helpers](#1.helpers-placeholder-clearfix), so remember to include or create that if you use the modules by themselves.
+/// Grid row container. Clears float and adds negative margin to allow for grid gutters. Clears via [`%clearfix` in Helpers](#1.helpers-placeholder-clearfix), so remember to include or create that if you use the modules by themselves. Uses silent classes, so should only be used outside media queries.
 ///
 /// @param {Bool} $margin [true] - Add negative margin
 ///
