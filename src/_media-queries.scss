@@ -55,27 +55,27 @@ $mq-mobile-vertical: 320px !default;
 	@else {
 		@if ($max-width) {
 			@if $point == desktop {
-				@media screen and (max-width:$mq-desktop - 1px) {
+				@media screen and (max-width:$mq-desktop) {
 					@content;
 				}
 			}
 			@else if $point == tabletH {
-				@media screen and (max-width:$mq-tablet-horizontal - 1px) {
+				@media screen and (max-width:$mq-tablet-horizontal) {
 					@content;
 				}
 			}
 			@else if $point == tabletV {
-				@media screen and (max-width:$mq-tablet-vertical - 1px) {
+				@media screen and (max-width:$mq-tablet-vertical) {
 					@content;
 				}
 			}
 			@else if $point == mobileH {
-				@media screen and (max-width:$mq-mobile-horizontal - 1px) {
+				@media screen and (max-width:$mq-mobile-horizontal) {
 					@content;
 				}
 			}
 			@else if $point == mobileV {
-				@media screen and (max-width:$mq-mobile-vertical - 1px) {
+				@media screen and (max-width:$mq-mobile-vertical) {
 					@content;
 				}
 			}
