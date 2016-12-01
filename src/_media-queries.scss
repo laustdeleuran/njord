@@ -1,6 +1,6 @@
 ////
 /// Media queries
-/// 
+///
 ///
 /// @group 2.mediaqueries
 ////
@@ -55,64 +55,64 @@ $mq-mobile-vertical: 320px !default;
 	@else {
 		@if ($max-width) {
 			@if $point == desktop {
-				@media screen and (max-width:$mq-desktop) {
+				@media (max-width:$mq-desktop) {
 					@content;
 				}
 			}
 			@else if $point == tabletH {
-				@media screen and (max-width:$mq-tablet-horizontal) {
+				@media (max-width:$mq-tablet-horizontal) {
 					@content;
 				}
 			}
 			@else if $point == tabletV {
-				@media screen and (max-width:$mq-tablet-vertical) {
+				@media (max-width:$mq-tablet-vertical) {
 					@content;
 				}
 			}
 			@else if $point == mobileH {
-				@media screen and (max-width:$mq-mobile-horizontal) {
+				@media (max-width:$mq-mobile-horizontal) {
 					@content;
 				}
 			}
 			@else if $point == mobileV {
-				@media screen and (max-width:$mq-mobile-vertical) {
+				@media (max-width:$mq-mobile-vertical) {
 					@content;
 				}
 			}
 			@else {
-				@media screen and (max-width:$point) {
+				@media (max-width:$point) {
 					@content;
 				}
 			}
 		}
 		@else {
 			@if $point == desktop {
-				@media screen and (min-width:$mq-desktop) {
+				@media (min-width:$mq-desktop) {
 					@content;
 				}
 			}
 			@else if $point == tabletH {
-				@media screen and (min-width:$mq-tablet-horizontal) {
+				@media (min-width:$mq-tablet-horizontal) {
 					@content;
 				}
 			}
 			@else if $point == tabletV {
-				@media screen and (min-width:$mq-tablet-vertical) {
+				@media (min-width:$mq-tablet-vertical) {
 					@content;
 				}
 			}
 			@else if $point == mobileH {
-				@media screen and (min-width:$mq-mobile-horizontal) {
+				@media (min-width:$mq-mobile-horizontal) {
 					@content;
 				}
 			}
 			@else if $point == mobileV {
-				@media screen and (min-width:$mq-mobile-vertical) {
+				@media (min-width:$mq-mobile-vertical) {
 					@content;
 				}
 			}
 			@else {
-				@media screen and (min-width:$point) {
+				@media (min-width:$point) {
 					@content;
 				}
 			}

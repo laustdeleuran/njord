@@ -1,5 +1,5 @@
 ////
-/// The most broadly named module encompasses a wide range of - well, erm - helpers. Everything from small functions and silent classes to large mixins. 
+/// The most broadly named module encompasses a wide range of - well, erm - helpers. Everything from small functions and silent classes to large mixins.
 ///
 /// @group 1.helpers
 ////
@@ -70,7 +70,6 @@
 ///		display: block;
 ///	}
 %pseudo-block {
-	@extend %hide-text;	
 	content: '';
 	display: block;
 }
@@ -109,9 +108,9 @@
 ///		content: '';
 ///		clear: both;
 ///		height: 0;
-///	
+///
 ///		font-size: 0;
-///	
+///
 ///		visibility: hidden;
 ///	}
 %clearfix {
@@ -204,11 +203,11 @@
 
 	@if $direction == X {
 		@include background-image(
-			// Shadow covers 
+			// Shadow covers
 			linear-gradient(to right, $background-color 30%, rgba($background-color, 0)),
 			linear-gradient(to right, rgba($background-color, 0), $background-color 70%),
 
-			// Shadows 
+			// Shadows
 			radial-gradient(farthest-side at 0 50%, rgba($shadow-color, $shadow-intensity), rgba($shadow-color, 0)),
 			radial-gradient(farthest-side at 100% 50%, rgba($shadow-color, $shadow-intensity), rgba($shadow-color, 0))
 		);
@@ -217,15 +216,15 @@
 		background-size: $cover-size 100%, $cover-size 100%, $shadow-size 100%, $shadow-size 100%;
 		background-position: 0 0, 100% 0, 0 0, 100% 0;
 
-		// Opera doesn't support this in the shorthand 
+		// Opera doesn't support this in the shorthand
 		background-attachment: local, local, scroll, scroll;
 	} @else {
 		@include background-image(
-			// Shadow covers 
+			// Shadow covers
 			linear-gradient(to bottom, $background-color 30%, rgba($background-color, 0)),
 			linear-gradient(to bottom, rgba($background-color, 0), $background-color 70%),
 
-			// Shadows 
+			// Shadows
 			radial-gradient(farthest-side at 50% 0, rgba($shadow-color, $shadow-intensity), rgba($shadow-color, 0)),
 			radial-gradient(farthest-side at 50% 100%, rgba($shadow-color, $shadow-intensity), rgba($shadow-color, 0))
 		);
@@ -234,7 +233,7 @@
 		background-size: 100% $cover-size, 100% $cover-size, 100% $shadow-size, 100% $shadow-size;
 		background-position: 0 0, 0 100%, 0 0, 0 100%;
 
-		// Opera doesn't support this in the shorthand 
+		// Opera doesn't support this in the shorthand
 		background-attachment: local, local, scroll, scroll;
 	}
 }
