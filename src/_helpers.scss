@@ -179,7 +179,8 @@
 @mixin link-active {
 	&:focus,
 	&:active,
-	.no-touchevents &:hover {
+	.no-touchevents &:hover,
+	.no-js &:hover {
 		@content;
 	}
 }
