@@ -33,7 +33,7 @@
     "typograhy"
   ],
   "devDependencies": {
-    "bourbon": "^4.2.5",
+    "bourbon": "^4.3.4",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-bump": "^1.0.0",
