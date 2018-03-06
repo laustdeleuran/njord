@@ -160,7 +160,7 @@ $grid-columns: 8 !default;
 /// Grid row container. Clears float and adds negative margin to allow for grid gutters. Clears via [`%clearfix` in Helpers](#1.helpers-placeholder-clearfix), so remember to include or create that if you use the modules by themselves. Uses silent classes, so should only be used outside media queries.
 ///
 /// @param {Bool} $margin [true] - Add negative margin
-/// @param {Bool} $clearfix [true] - Add negative margin
+/// @param {Bool} $clearfix [true] - Add clearfix
 /// @param {Bool} $hoist [true] - Determines if padding should be hoisted via silent classes. On by default, but turn it on to use this mixin inside @media queries. This will produce bloatier code.
 ///
 /// @example scss - Basic usage
