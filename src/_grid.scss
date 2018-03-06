@@ -29,6 +29,25 @@ $grid-columns: 8 !default;
 
 
 
+/// Grid row styles as an include for more effortless (but bloatier) coding
+///
+/// @group _internals
+///
+/// @example scss - Basic usage
+///	.grid__row {
+///		@include grid-col-padding;
+///	}
+///
+/// @example scss - Basic usage output
+///	.grid__row {
+///		margin-left: -15px;
+///		margin-right: -15px;
+///	}
+@mixin grid-row-margin {
+	margin-left: - $grid-gutter / 2;
+	margin-right: - $grid-gutter / 2;
+}
+
 /// Grid row styles that can be hoisted without problems
 ///
 /// @group _internals
@@ -37,15 +56,35 @@ $grid-columns: 8 !default;
 ///	.grid__row {
 ///		@extend %grid__row;
 ///	}
-///	
+///
 /// @example scss - Basic usage output
 ///	.grid__row {
 ///		margin-left: -15px;
 ///		margin-right: -15px;
 ///	}
 %grid__row {
-	margin-left: - $grid-gutter / 2;
-	margin-right: - $grid-gutter / 2;
+	@include grid-row-margin;
+}
+
+/// Grid row padding styles as an include for more effortless (but bloatier) coding
+///
+/// @group _internals
+///
+/// @example scss - Basic usage
+///	.grid__col--padding {
+///		@include grid-col-padding;
+///	}
+///
+/// @example scss - Basic usage output
+///	.grid__col--padding {
+///		box-sizing: border-box;
+///		padding-left: 15px;
+///		padding-right: 15px;
+///	}
+@mixin grid-col-padding {
+	box-sizing: border-box;
+	padding-left: $grid-gutter / 2;
+	padding-right: $grid-gutter / 2;
 }
 
 /// Grid row padding styles that can be hoisted without problems
@@ -56,7 +95,7 @@ $grid-columns: 8 !default;
 ///	.grid__col--padding {
 ///		@extend %grid__col--padding;
 ///	}
-///	
+///
 /// @example scss - Basic usage output
 ///	.grid__col--padding {
 ///		box-sizing: border-box;
@@ -64,36 +103,13 @@ $grid-columns: 8 !default;
 ///		padding-right: 15px;
 ///	}
 %grid__col--padding {
-	box-sizing: border-box;
-	padding-left: $grid-gutter / 2;
-	padding-right: $grid-gutter / 2;
-}
-
-/// Grid row padding styles as an include for more effortless (but bloatier) coding
-///
-/// @group _internals
-///
-/// @example scss - Basic usage
-///	.grid__col--padding {
-///		@include grid-col-padding();
-///	}
-///	
-/// @example scss - Basic usage output
-///	.grid__col--padding {
-///		box-sizing: border-box;
-///		padding-left: 15px;
-///		padding-right: 15px;
-///	}
-@mixin grid-col-padding() {
-	box-sizing: border-box;
-	padding-left: $grid-gutter / 2;
-	padding-right: $grid-gutter / 2;
+	@include grid-col-padding;
 }
 
 
 
 /// Grid column mixin for easy usage in projects.
-/// 
+///
 /// @param {Integer} $cols [1] - Number of columns
 /// @param {Bool} $padding [true] - Add padding
 /// @param {Bool} $hoist [false] - Determines if padding should be hoisted via silent classes. Off by default, but produces bloatier code. If used, be sure to only use outside @media queries.
@@ -119,7 +135,7 @@ $grid-columns: 8 !default;
 		@if ($hoist) {
 			@extend %grid__col--padding;
 		} @else {
-			@include grid-col-padding();
+			@include grid-col-padding;
 		}
 	}
 }
@@ -147,12 +163,12 @@ $grid-columns: 8 !default;
 ///
 /// @example scss - Basic usage
 ///	.my-row {
-///		@include grid-row();
+///		@include grid-row;
 ///	}
 ///
 ///
 /// @example scss - Basic usage output
-///	.my-row:after { // Clearfix is hoisted via silent class in Helpers. 
+///	.my-row:after { // Clearfix is hoisted via silent class in Helpers.
 ///		display: block;
 ///		content: '';
 ///		clear: both;
@@ -166,11 +182,23 @@ $grid-columns: 8 !default;
 ///		margin-left: -15px;
 ///		margin-right: -15px;
 ///	}
-@mixin grid-row($margin: true) {
+@mixin grid-row($margin: true, $clearfix: true, $hoist: true) {
 	@if ($margin) {
-		@extend %grid__row;
+		@if ($hoist) {
+			@extend %grid__row;
+		} @else {
+			@include grid-row-margin;
+		}
 	}
-	&:after {
-		@extend %clearfix;
+	@if ($clearfix) {
+		@if ($hoist) {
+			&:after {
+				@extend %clearfix;
+			}
+		} @else {
+			&:after {
+				@include clearfix;
+			}
+		}
 	}
 }

@@ -95,6 +95,25 @@
 	list-style: none;
 }
 
+/// Standard clearfix as an include for more effortless (but bloatier) coding
+///
+/// @example scss - Basic usage
+///	.float-container:after {
+///		@include clearfix;
+///	}
+///
+/// @example scss - Basic usage output
+///	.float-container:after {
+///		content: "";
+///		display: table;
+///		clear: both;
+///	}
+@mixin clearfix {
+	content: '';
+	display: table;
+	clear: both;
+}
+
 /// Standard clearfix
 ///
 /// @example scss - Basic usage
@@ -104,24 +123,12 @@
 ///
 /// @example scss - Basic usage output
 ///	.float-container:after {
-///		display: block;
-///		content: '';
+///		content: "";
+///		display: table;
 ///		clear: both;
-///		height: 0;
-///
-///		font-size: 0;
-///
-///		visibility: hidden;
 ///	}
 %clearfix {
-	display: block;
-	content: '';
-	clear: both;
-	height: 0;
-
-	font-size: 0;
-
-	visibility: hidden;
+	@include clearfix;
 }
 
 
@@ -337,17 +344,17 @@ $experimental-support-for-khtml: false !default;
 ///		@include experimental(box-sizing, border-box);
 ///	}
 @mixin experimental($property, $value,
-  $moz      : $experimental-support-for-mozilla,
-  $webkit   : $experimental-support-for-webkit,
-  $o        : $experimental-support-for-opera,
-  $ms       : $experimental-support-for-microsoft,
-  $khtml    : $experimental-support-for-khtml,
-  $official : true
+	$moz      : $experimental-support-for-mozilla,
+	$webkit   : $experimental-support-for-webkit,
+	$o        : $experimental-support-for-opera,
+	$ms       : $experimental-support-for-microsoft,
+	$khtml    : $experimental-support-for-khtml,
+	$official : true
 ) {
-  @if $webkit  and $experimental-support-for-webkit    { -webkit-#{$property} : $value; }
-  @if $khtml   and $experimental-support-for-khtml     {  -khtml-#{$property} : $value; }
-  @if $moz     and $experimental-support-for-mozilla   {    -moz-#{$property} : $value; }
-  @if $ms      and $experimental-support-for-microsoft {     -ms-#{$property} : $value; }
-  @if $o       and $experimental-support-for-opera     {      -o-#{$property} : $value; }
-  @if $official                                        {         #{$property} : $value; }
+	@if $webkit  and $experimental-support-for-webkit    { -webkit-#{$property} : $value; }
+	@if $khtml   and $experimental-support-for-khtml     {  -khtml-#{$property} : $value; }
+	@if $moz     and $experimental-support-for-mozilla   {    -moz-#{$property} : $value; }
+	@if $ms      and $experimental-support-for-microsoft {     -ms-#{$property} : $value; }
+	@if $o       and $experimental-support-for-opera     {      -o-#{$property} : $value; }
+	@if $official                                        {         #{$property} : $value; }
 }
